@@ -7,8 +7,7 @@ public:
         vector<vector<int>> dp(l,vector<int>(l,0));
         sort(cuts.begin(),cuts.end());
         for(int i=l-2;i>=1;i--){
-            for(int j=1;j<=l-2;j++){
-                if(i>j)continue;
+            for(int j=i;j<=l-2;j++){
                 int mini=INT_MAX;
                 for(int ind=i;ind<=j;ind++){
                     int cost=cuts[j+1]-cuts[i-1]+dp[i][ind-1]+dp[ind+1][j];

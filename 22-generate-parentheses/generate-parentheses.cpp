@@ -1,20 +1,25 @@
 class Solution {
 public:
-    void gen(string str,int n,int m,vector<string>& ans){
+    void gen(string& str,int n,int m,vector<string>& ans){
         if(n==m && n==0){
             ans.push_back(str);
             return;
         }
         if(n>0){
-            gen(str+"(",n-1,m,ans);
+            str.push_back('(');
+            gen(str,n-1,m,ans);
+            str.pop_back();
         }
-        if(m>0 && n<m){
-            gen(str+")",n,m-1,ans);
+        if(n<m){
+            str.push_back(')');
+            gen(str,n,m-1,ans);
+            str.pop_back();
         }
     }
     vector<string> generateParenthesis(int n) {
         vector<string> ans;
-        gen("",n,n,ans);
+        string str;
+        gen(str,n,n,ans);
         return ans;
     }
 };

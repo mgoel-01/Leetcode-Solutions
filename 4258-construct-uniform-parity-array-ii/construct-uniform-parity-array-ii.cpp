@@ -5,18 +5,16 @@ public:
        for(auto x:nums1){
             if(x%2!=0 && minOdd>x)minOdd=x;
        } 
-       bool isUniform=true;
+       bool isOdd=true;
+       bool isEven=true;
        for(auto x:nums1){
             if(x%2==0){
-                if((x-minOdd)<1)isUniform=false;
+                if((x-minOdd)<1)isOdd=false;
+            }
+            else{
+                if((x-minOdd)<1)isEven= false;
             }
        }
-       if(isUniform)return true;
-       for(auto x:nums1){
-            if(x%2!=0){
-               if((x-minOdd)<1)return false;
-            }
-       }
-       return true;
+       return isOdd|isEven;
     }
 };

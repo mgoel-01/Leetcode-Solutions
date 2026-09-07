@@ -6,7 +6,6 @@ public:
         if(dp[i][j]!=-1)return dp[i][j];
         bool isTrue1=false;
         string str=s.substr(i,j-i+1);
-        cout<<str<<endl;
         if(find(wordDict.begin(),wordDict.end(),str)!=wordDict.end()){
             isTrue1=canSegmented(j+1,j+1,n,s,wordDict,dp);
         }

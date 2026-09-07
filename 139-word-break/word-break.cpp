@@ -15,7 +15,7 @@ public:
     }
     bool wordBreak(string s, vector<string>& wordDict) {
         int n=s.size();
-        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        vector<vector<int>> dp(n,vector<int>(n,-1));
         return canSegmented(0,0,n,s,wordDict,dp);
     }
 };

@@ -15,7 +15,17 @@ public:
     }
     int numDecodings(string s) {
         int n=s.size();
-        vector<int> dp(n,-1);
-        return countWays(0,n,s,dp);
+        vector<int> dp(n+2,0);
+        for(int i=n;i<=n+1;i++)dp[i]=1;
+        for(int i=n-1;i>=0;i--){
+            int pick1=0;
+            if(s[i]-'0'!=0)pick1=dp[i+1];
+            int pick2=0;
+            int num=0;
+            if(i<n-1) num=((s[i]-'0')*10)+(s[i+1]-'0');
+            if(i<n-1 && num>9 && num<=26)pick2=dp[i+2];
+            dp[i]= pick1+pick2;
+        }
+        return dp[0];
     }
 };

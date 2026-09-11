@@ -1,12 +1,11 @@
 class Solution {
 public:
-    bool detectCycle(int node,vector<int>& vis,vector<int>& dfsVis,vector<vector<int>>& graph,vector<int>& temp){
+    bool detectCycle(int node,vector<int>& vis,vector<int>& dfsVis,vector<vector<int>>& graph){
         vis[node]=1;
         dfsVis[node]=1;
-        temp.push_back(node);
         for(auto it:graph[node]){
             if(!vis[it]){
-                if(detectCycle(it,vis,dfsVis,graph,temp))return true;
+                if(detectCycle(it,vis,dfsVis,graph))return true;
             }
             else if(dfsVis[it])return true;
         }
@@ -15,15 +14,13 @@ public:
     }
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
         int n=graph.size();
-        set<int> st;
         vector<int> vis(n,0),dfsVis(n,0);
+        vector<int> ans;
         for(int i=0;i<n;i++){
-                vector<int> temp;
-                if(!detectCycle(i,vis,dfsVis,graph,temp)){
-                    for(auto x:temp)st.insert(x);
+                if(!detectCycle(i,vis,dfsVis,graph)){
+                    ans.push_back(i);
                 }
         }
-        vector<int> ans(st.begin(),st.end());
         return ans;
     }
 };

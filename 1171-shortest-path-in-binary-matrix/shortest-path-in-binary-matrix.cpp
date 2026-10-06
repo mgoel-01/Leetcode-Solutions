@@ -3,6 +3,7 @@ public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         int n=grid.size();
         if(grid[0][0] == 1 || grid[n-1][n-1] == 1)return -1;
+        if(n==1 && grid[0][0]==0)return 1;
         int delrow[]={0,1,0,-1,-1,1,-1,1};
         int delcol[]={1,0,-1,0,1,-1,-1,1};
         queue<pair<pair<int,int>,int>> q;
@@ -21,11 +22,11 @@ public:
                 int node=n*nrow+ncol;
                 if(grid[nrow][ncol]==0 && (dis+1<dist[node])){    
                     dist[node]=dis+1;
+                    if(nrow==n-1 && ncol==n-1)return dis+1;
                     q.push({{nrow,ncol},dis+1});
                 }
             }
         }
-        if(dist[(n*n)-1]==1e9)return -1;
-        return dist[(n*n)-1];
+        return -1;
     }
 };

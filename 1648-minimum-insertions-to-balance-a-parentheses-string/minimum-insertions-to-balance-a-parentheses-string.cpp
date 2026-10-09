@@ -31,6 +31,6 @@ public:
                 }
             }
         }
-        return ans+st.size()+(cons && st.empty() ? 1 : 0);
+        return ans+st.size()+(cons && st.empty()?1:0);
     }
 };

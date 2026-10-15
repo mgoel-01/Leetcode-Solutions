@@ -4,10 +4,12 @@ public:
         int ans=0;
         int n=nums.size();
         for(int i=0;i<n;i++){
-            set<int>st;
+            int hash[101]={0};
+            int l=0;
             for(int j=i;j<n;j++){
-                st.insert(nums[j]);
-                ans+=pow(st.size(),2);
+                hash[nums[j]]++;
+                if(hash[nums[j]]==1)l++;
+                ans+=l*l;
             }
         }
         return ans;
